@@ -1,0 +1,21 @@
+@startuml
+left to right direction
+skinparam backgroundColor #B6E3A6
+' Definimos nuestro actores
+actor "vendedor" as vendedor
+
+package "Sistema SYS-PROFAR"{
+    usecase "Registrar Venta" as registrar
+    usecase "Autenticar Usuario" as auth
+    usecase "Consultar/Validad Stock" as inventario
+    usecase "Generar Comprobante" as comprobante
+    usecase "Registrar Auditoria" as auditoria
+}
+vendedor --> registrar
+
+' relaciones
+registrar ..> auth : <<include>>
+registrar ..> inventario : <<include>>
+registrar ..> comprobante : <<include>>
+registrar ..> auditoria : <<include>>
+@enduml
