@@ -1,36 +1,79 @@
 @startuml
 left to right direction
 !theme bluegray
-' en esta seccion defino mis actores
+
+skinparam footerFontColor black
+title <size:20><b>Caso de uso "CU02 - Logearse"</b></size>
+
+' =====================================================
+' ACTORES
+' =====================================================
+
 actor "Administrador" as admin
 actor "dueño" as dueno
 actor "Vendedor (central)" as vc
 actor "Vendedor (Sucursal)" as vs
 
-' en esta seccion defino el limite del sistema
-' SYS PROFAR y dentro defino los casos de uso
-rectangle "SYS PROFAR"{
-    usecase "CU02\nLogearse" as UC_Login
+' =====================================================
+' SISTEMA
+' =====================================================
 
-    usecase "Validar\ncredenciales" as UC_Validar
-    usecase "Generar\nToken JWT" as UC_JWT
-    usecase "Mostrar\nMensaje de error" as UC_error
+rectangle "SYS PROFAR"{
+
+    usecase "◉\n<size:18><b>CU02</b></size>\nLogearse" as UC_Login
+
+    usecase "🔐\nValidar\ncredenciales" as UC_Validar
+
+    usecase "🪪\nGenerar\nToken JWT" as UC_JWT
+
+    usecase "⚠\nMostrar\nMensaje de error" as UC_error
 }
 
-' En esta seccion hago la relacion de los actores
-' con mi caso de uso principal
-admin --> UC_Login
-dueno --> UC_Login
-vc --> UC_Login
-vs --> UC_Login
+' =====================================================
+' RELACIONES
+' =====================================================
 
-' en esta seccion defino la relacion que incluye
-' al ejecutar el caso de uso principal
+admin --> UC_Login : Accede
+dueno --> UC_Login : Accede
+vc --> UC_Login : Accede
+vs --> UC_Login : Accede
+
 UC_Login .> UC_Validar : <<include>>
 UC_Login .> UC_JWT : <<include>>
 
-' en esta seccion defino la relacion que alterntivamente
-' se ejecuta cuando el caso de uso principal falla
 UC_error .> UC_Login : <<extend>>
+
+' =====================================================
+' LEYENDA PROFESIONAL
+' =====================================================
+
+legend right
+|= <b><size:14>LEYENDA GENERAL</size></b> |= |
+
+|= <b>Símbolo</b> |= <b>Descripción</b> |
+
+| ◉ | Caso de uso principal |
+| 🔐 | Validación de credenciales |
+| 🪪 | Generación de token JWT |
+| ⚠ | Flujo alternativo de error |
+
+|= <b>Relación</b> |= <b>Significado</b> |
+
+| ─────► | Asociación actor → caso de uso |
+| · · · ► | Dependencia UML |
+| <<include>> | Flujo obligatorio |
+| <<extend>> | Flujo alternativo/excepcional |
+
+endlegend
+
+' =====================================================
+' FOOTER
+' =====================================================
+
+footer
+<b>SYS PROFAR</b>
+Diagramas UML - Casos de Uso
+PlantUML %version()
+endfooter
 
 @enduml
