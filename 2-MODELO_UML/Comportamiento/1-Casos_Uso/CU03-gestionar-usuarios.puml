@@ -1,0 +1,61 @@
+@startuml
+
+skin rose
+
+left to right direction
+
+title Caso de uso "CU03 - Gestionar Usuarios"
+
+actor Administrador
+
+rectangle "SYS PROFAR" {
+
+    usecase "◉\nCU03\nGestionar Usuarios" as CU03
+
+    usecase "◻\nRegistrar\nUsuario" as RU
+
+    usecase "◻\nEditar\nUsuario" as EU
+
+    usecase "◻\nEliminar\nUsuario" as ELU
+
+    usecase "◻\nConsultar\nUsuario" as CU
+
+    usecase "◻\nAsignar Roles\ny Permisos" as RP
+
+    usecase "▯\nValidar\nDatos" as VD
+
+    usecase "△\nMostrar\nMensaje de error" as ERR
+}
+
+Administrador --> CU03 : Gestiona
+
+CU03 .> RU : <<include>>
+CU03 .> EU : <<include>>
+CU03 .> ELU : <<include>>
+CU03 .> CU : <<include>>
+CU03 .> RP : <<include>>
+
+RU .> VD : <<include>>
+EU .> VD : <<include>>
+
+ERR .> CU03 : <<extend>>
+
+legend right
+
+| |= LEYENDA GENERAL | |
+
+|= Símbolo |= Descripción |
+| ◉ | Caso de uso principal |
+| ◻ | Operaciones de gestión |
+| ▯ | Validación de datos |
+| △ | Flujo alternativo de error |
+
+|= Relación |= Significado |
+| --> | Asociación actor → caso de uso |
+| ..> | Dependencia UML |
+| <<include>> | Flujo obligatorio |
+| <<extend>> | Flujo alternativo/excepcional |
+
+endlegend
+
+@enduml
