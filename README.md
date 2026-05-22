@@ -1,5 +1,4 @@
-# SYS PROFAR
-
+# SISTEMA DE VENTA DE PRODUCTOS FARMACEUTICOS (SYS PROFAR)
 Documentación del Sistema de gestión de ventas e inventario para farmacias.
 
 ## Tecnologías
