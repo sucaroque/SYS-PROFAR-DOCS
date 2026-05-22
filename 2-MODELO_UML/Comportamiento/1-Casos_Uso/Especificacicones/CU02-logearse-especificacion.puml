@@ -1,0 +1,42 @@
+@startjson
+{
+  "Caso de uso": "Logearse",
+  "Id": "CU-02",
+  "Breve descripción": "El sistema permite a los usuarios autenticarse mediante credenciales válidas para acceder a las funcionalidades del sistema SYS PROFAR.",
+  "Actores primarios": [
+    "Administrador",
+    "Dueño",
+    "Vendedor (Central)",
+    "Vendedor (Sucursal)"
+  ],
+  "Actores secundarios": [
+    "Servicio de Autenticación JWT",
+    "Base de Datos de Usuarios"
+  ],
+  "Precondiciones": [
+    "El usuario debe estar registrado en el sistema.",
+    "El sistema SYS PROFAR debe estar disponible.",
+    "El usuario debe contar con credenciales válidas."
+  ],
+  "Flujo principal": {
+    "1": "El usuario accede al formulario de inicio de sesión.",
+    "2": "El sistema solicita usuario y contraseña.",
+    "3": "El usuario ingresa sus credenciales.",
+    "4": "El sistema valida las credenciales en la Base de Datos de Usuarios.",
+    "5": "El sistema genera un Token JWT para la sesión.",
+    "6": "El sistema registra el acceso del usuario.",
+    "7": "El sistema concede acceso y muestra el panel principal."
+  },
+  "Postcondiciones": [
+    "El usuario accede correctamente al sistema.",
+    "La sesión queda autenticada mediante JWT.",
+    "El acceso queda registrado en el sistema."
+  ],
+  "Flujos alternativos": {
+    "A1: Credenciales inválidas": "El sistema muestra un mensaje de error indicando que el usuario o contraseña son incorrectos.",
+    "A2: Usuario bloqueado": "El sistema deniega el acceso e informa que la cuenta está bloqueada.",
+    "A3: Sesión expirada": "El sistema solicita nuevamente el inicio de sesión.",
+    "A4: Error del servicio de autenticación": "El sistema muestra un mensaje indicando que el servicio no está disponible temporalmente."
+  }
+}
+@endjson
