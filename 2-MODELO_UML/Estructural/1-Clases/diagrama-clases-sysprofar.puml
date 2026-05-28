@@ -1,0 +1,42 @@
+@startuml
+title Diagrama de Clases - SYS PROFAR
+'====================================
+' ENUMS
+' ===================================
+enum EstadoVenta {
+    PENDIENTE
+    PAGADA
+    ANULADA
+}
+
+enum TipoMovimiento {
+    INGRESO
+    SALIDA
+    TRANSFERENCIA
+}
+
+enum Rol {
+    ADMINISTRADOR
+    VENDEDOR
+    DUENO
+}
+
+'=================================
+'USUARIOS
+'=================================
+
+abstract class Usuario {
+    - idUsuario: int
+    - username: String
+    - password: String
+    - nombres: String
+    - apellidos: String
+    - estado: boolean
+    - ultimoAcceso: DateTime
+
+    + login(): boolean
+    + logout(): void
+    + cambiarPassword(nueva:String): void
+    + tienePermiso(permiso:String): boolean
+}
+@enduml
