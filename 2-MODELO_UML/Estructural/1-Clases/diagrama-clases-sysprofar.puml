@@ -39,4 +39,102 @@ abstract class Usuario {
     + cambiarPassword(nueva:String): void
     + tienePermiso(permiso:String): boolean
 }
+
+class Vendedor{
+    - codigoEmpleado: String
+    - sedeAsigando: String
+
+    + registrarVenta(): Venta
+    + consultarStock(): void
+}
+
+class Administrador{
+    + registrarUsuario(): void
+    + actualizarUsuario(): void
+    + eliminarUsuario(): void
+    + generarReporteVentas(): void
+    + generarReporteInventario(): void
+}
+class Dueno{
+    + visualizarDashboard(): void
+    + consultarGanancias(): double
+    + supervisarSedes(): void
+}
+
+Usuario <|-- Vendedor : es un tipo de <
+Usuario <|-- Administrador : es un tipo de <
+Usuario <|-- Dueno : es un tipo de <
+
+class Permiso {
+    - idPermiso: int
+    - nombre: String
+    - descripcion: String
+}
+
+Usuario "1" -- "*" Permiso : posee <
+Usuario --> Rol : asignado >
+
+'=====================================
+'VENTAS
+'=====================================
+
+class Venta {
+    - idVenta: int
+    - fecha: DateTime
+    - total: double
+    - igv: double
+    - estado: EstadoVenta
+
+    + calcularTotal(): double
+    + calcularIGV(): double
+    + registrarPago(): void
+    + generarComprobante(): void
+}
+class DetalleVenta {
+    - cantidad: int
+    - precioUnitario: double
+    - subtotal: double
+
+    + calcularSubtotal(): double
+}
+class Comprobante {
+    - idComprobante: int
+    - serie: String
+    - numero: String
+    - fechaEmision: DateTime
+
+    + emitir(): void
+    + descargarPDF(): void
+}
+
+Venta "1" *-- "1..*" DetalleVenta : contiene
+Venta "1" --> "1" Comprobante : genera
+Vendedor "1" --> "0..*" Venta : registra
+
+'=========================================
+'INVENTARIO
+'=========================================
+
+class Medicamento {
+    - idMedicamento: int
+    - nombre: String
+    - laboratorio: String
+    - fechaVencimiento: Date
+    - precioCompra: double
+    - requiereRceta: boolean
+
+    + actualizarPrecio(): void
+    + validarVencimiento(): boolean
+}
+class Stock {
+    - idStock: int
+    - cantidadActual: int
+    - stock Minimo: int
+    - ubicacionRack: String
+
+    + aumentarStock(cantidad:int): void
+    + disminuirStock(cantidad: int): void
+    + verificarStockMinimo(): boolean
+}
+
 @enduml
