@@ -136,5 +136,66 @@ class Stock {
     + disminuirStock(cantidad: int): void
     + verificarStockMinimo(): boolean
 }
+class Sede {
+    - idSede: int
+    - nombre: String
+    - direccion: String
+
+    + transferirStock(): void
+    + consultarInventario(): void
+}
+
+class MovimientoInventario {
+    - idMovimiento: int
+    - fecha: DateTime
+    - tipo: TipoMovimiento
+    - cantidad: int
+    - motivo: String
+
+    + registrarMovimiento(): void
+}
+
+class Proveedor {
+    - idProveedor: int
+    - razonSocial: String
+    - telefono: String
+    - direccion: String
+
+    + suministrarMedicamentos(): void
+}
+
+Sede "1" o-- "0..*" Stock : administra
+Stock "1" --> "1" Medicamento : referencia
+DetalleVenta "*" --> "1" Medicamento : incluye
+
+MovimientoInventario "*" --> "1" Medicamento : afecta >
+MovimientoInventario "*" --> "1" Sede : ocurre en >
+
+Proveedor "1" --> "*" Medicamento : suministra
+
+'========================
+' AUDITORIA
+'========================
+
+class Auditoria {
+    - idAuditoria: int
+    - fechaHora: DateTime
+    - accion: String
+    - modulo: String
+    - descripcion: String
+    - ipOrigen: String
+
+    + registrarEvento(): void
+    + generarTraza(): void
+}
+
+Usuario "1" --> "*" Auditoria : genera
+
+'========================
+' RELACIONES ADICIONALES
+'========================
+
+Administrador --> Sede : gestiona
+Dueno --> Sede : supervisa
 
 @enduml
