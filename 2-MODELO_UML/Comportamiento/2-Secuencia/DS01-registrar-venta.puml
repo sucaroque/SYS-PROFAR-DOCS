@@ -1,0 +1,53 @@
+@startuml
+title Diagrama de Secuencia - Registrar Venta (SYS PROFAR)
+
+actor "vendedor: Vendedor" as V
+participant "auth: Usuario" as U
+participant "nuevaVenta: Venta" as VT
+participant "detalle: DetalleVenta" as DV
+participant "item: Medicamento" as M
+participant "stk: Stock" as S
+participant "ticket: Comprobante" as C
+participant "log: Auditoria" as A
+
+activate V
+V -> U : tienePermiso("REGISTRAR_VENTA)
+activate U
+U --> V
+deactivate U
+
+note over V, VT : El vendedor inicia una nueva venta
+V -> VT : <<create>> (idVenta, fecha)
+activate VT
+VT --> V : instancia creada
+deactivate VT
+
+loop Por cada medicamento agregado
+    V -> M: validarVencimiento()
+    activate M
+    M --> V : boolean (vence ok)
+    deactivate M
+
+    V -> S : verificarStockMinimo()
+    activate S
+    S --> V : cantidadActual >= cantidadSolicitada
+    deactivate S
+
+    V -> DV : <<create>> (cantidad, precioUnitario)
+    activate DV
+    DV -> DV : calcularSubtotal()
+    DV --> V : subtotal
+    deactivate DV
+
+    V -> VT : agregarDetalle(detalle)
+    V -> S : disminuirStock(cantidad)
+end
+
+V -> VT : registrarPago()
+activate VT
+VT -> VT : calcularIGV()
+VT -> VT : calcularTotal()
+
+
+
+@enduml
