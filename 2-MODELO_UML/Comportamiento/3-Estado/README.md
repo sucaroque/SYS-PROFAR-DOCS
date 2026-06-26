@@ -1,0 +1,7 @@
+# DIAGRAMAS DE ESTADO
+
+##  Diagrama de estado clase venta
+![](https:////www.plantuml.com/plantuml/png/TPB1JiCm38RlUOfe9q2QkADfMaKhX8J63cENQGUJcCwGDPMR8W7YeNW6NWmdMrNAHWzLulzpylzkPqq03ktEgUQ5gXeOThe9RmxbpMIIeW85AUG4fSYWBUf2sgnlujA1DWuQrACLLW56QdsnqUFnL2-AUNvRp9U5Ka87x0lwGoajJqSMbWpvAlL7OL3GLzfwVQdX-miiSOu1dCEpytz10ywq3dZfXHJkK_KNnzjMoFH41dW1fPScnf8ax7ul_C7j49jCpDQJmUbKgQ6IecOtMPx9MUiwbg1c_mZMRqwWlPUEPZHRU4_u7wVP_E5kVww1og1akg-H8IQEFW-tfWc-Wck1iwfrIPOMY6jEa-b37N6_SXrfGmjhQ8Dd4gEmEStsK-WY2Qcw4o8X7xntdROn6o4pNiDpygbcM5dvwtu0)
+
+
+## 

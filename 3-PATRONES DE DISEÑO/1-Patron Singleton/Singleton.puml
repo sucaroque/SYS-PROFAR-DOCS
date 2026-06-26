@@ -1,0 +1,25 @@
+@startuml
+'Esto esconde automaticamente los estados y metodos de una clase
+hide empty members
+class Client {}
+class Singleton {
+    {static} - instance : Singleton
+
+    - Singleton()
+    {static} + getInstance() : Singleton
+}
+
+'RELACIONES
+Client -> Singleton
+Singleton --> Singleton
+
+' Nota adjunta
+note bottom of Singleton
+if (instance -- null) {
+    instance = new Singleton()
+}
+return instance
+end note
+
+
+@enduml
