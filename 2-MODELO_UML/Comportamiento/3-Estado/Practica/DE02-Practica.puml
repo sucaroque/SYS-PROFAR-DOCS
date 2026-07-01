@@ -1,0 +1,10 @@
+@startuml
+hide empty description
+[*] --> Estado1
+Estado1 --> [*]
+Estado1 : este es una cadena
+Estado1 : este es otra cadena
+
+Estado1 --> Estado2
+Estado2 --> [*]
+@enduml

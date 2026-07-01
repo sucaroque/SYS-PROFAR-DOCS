@@ -1,0 +1,32 @@
+@startuml
+skinparam style strictuml
+
+title Diagrama de Estados de la clase "Venta"
+[*] --> PENDIENTE
+
+state PENDIENTE {
+
+    [*] --> EdicionVenta
+    EdicionVenta : do / añadirDetalle()
+    EdicionVenta : do / calcularTotal()
+}
+PENDIENTE --> VerificarPago : registrarPago()
+
+state VerificarPago <<choice>>
+
+VerificarPago --> PAGADA : [pago aprobado]
+VerificarPago --> PENDIENTE : [pago rechazado]
+
+PENDIENTE --> ANULADA : cancelarOperacion()
+
+PAGADA --> EvaluarAnulacion : anularVenta()
+
+state EvaluarAnulacion <<choice>>
+EvaluarAnulacion --> ANULADA : [autorizada]
+EvaluarAnulacion --> PAGADA : [rechazada]
+
+ANULADA --> [*]
+PAGADA --> [*] : cierreCaja()
+
+
+@enduml
