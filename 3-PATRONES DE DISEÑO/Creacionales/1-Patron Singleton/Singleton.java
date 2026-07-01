@@ -8,7 +8,7 @@ public class Singleton {
     private static Singleton instancia;
 
     private Singleton(){
-        IO.println("Instancia de un objeto singleton");
+        IO.println("Instancia global del objeto singleton");
     }
 
     public static Singleton getInstance(){
@@ -19,6 +19,6 @@ public class Singleton {
     }
 
     public void mostrarMensaje() {
-        IO.println("Clse Singleton activo");
+        IO.println("Clase Singleton activo");
     }
 }
